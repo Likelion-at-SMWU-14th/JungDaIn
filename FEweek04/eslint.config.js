@@ -23,9 +23,6 @@ export default defineConfig([
         sourceType: 'module', // import, export 지원
       },
     },
-    plugins: {
-      prettier: prettierPlugin, // Prettier 플러그인 등록
-    },
     rules: {
       'prettier/prettier': 'error', // Prettier 규칙 위반 시 ESLint 에러 처리
     },
