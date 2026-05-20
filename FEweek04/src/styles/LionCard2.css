@@ -1,0 +1,26 @@
+.lion-card {
+  width: 280px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  margin: 20px auto;
+}
+
+.lion-card-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.lion-card-title {
+  font-size: 24px;
+  color: #333;
+}
+
+.lion-card-text {
+  font-size: 16px;
+  color: #555;
+}
