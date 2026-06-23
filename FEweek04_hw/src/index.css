@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "KyoboHandwriting";
+  src: url('./assets/KyoboHandwriting2024psw.ttf') format('truetype');
+}
+
+* {
+  font-family: "KyoboHandwriting", cursive;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "KyoboHandwriting", cursive;
+}
