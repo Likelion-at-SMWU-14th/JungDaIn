@@ -43,7 +43,7 @@ export const ButtonGrid = styled.div`
     gap: 0.25rem;
     background-color: #53e1de;
 `;
-export const TemporaryButton = styled.div`
+export const CalcButton = styled.div`
     min-height: 5rem;
 
     display: flex;

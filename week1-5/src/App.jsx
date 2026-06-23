@@ -1,4 +1,5 @@
 import * as S from "./styles/Calculator.Styled.js";
+import { buttons } from "./data/buttonData.js";
 
 function App() {
   return (
@@ -7,27 +8,16 @@ function App() {
         <S.Display>0</S.Display>
 
         <S.ButtonGrid>
-          <S.TemporaryButton>AC</S.TemporaryButton>
-          <S.TemporaryButton>÷</S.TemporaryButton>
-
-          <S.TemporaryButton>7</S.TemporaryButton>
-          <S.TemporaryButton>8</S.TemporaryButton>
-          <S.TemporaryButton>9</S.TemporaryButton>
-          <S.TemporaryButton>×</S.TemporaryButton>
-
-          <S.TemporaryButton>4</S.TemporaryButton>
-          <S.TemporaryButton>5</S.TemporaryButton>
-          <S.TemporaryButton>6</S.TemporaryButton>
-          <S.TemporaryButton>-</S.TemporaryButton>
-
-          <S.TemporaryButton>1</S.TemporaryButton>
-          <S.TemporaryButton>2</S.TemporaryButton>
-          <S.TemporaryButton>3</S.TemporaryButton>
-          <S.TemporaryButton>+</S.TemporaryButton>
-
-          <S.TemporaryButton>0</S.TemporaryButton>
-          <S.TemporaryButton>.</S.TemporaryButton>
-          <S.TemporaryButton>=</S.TemporaryButton>
+          {buttons.map((button) => (
+            <S.CalcButton
+              key={button.label}
+              type="button"
+              $variant={button.variant}
+              $span={button.span}
+            >
+              {button.label}
+            </S.CalcButton>
+          ))}
         </S.ButtonGrid>
       </S.CalculatorPanel>
     </S.Page>
