@@ -43,14 +43,26 @@ export const ButtonGrid = styled.div`
     gap: 0.25rem;
     background-color: #53e1de;
 `;
-export const CalcButton = styled.div`
+export const CalcButton = styled.button`
     min-height: 5rem;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    font-size: 1.5rem;
+    grid-column: span ${({ $span }) => $span};
 
-    background-color: #839de9;
+    background-color: ${({ $variant }) => {
+        if ($variant === "operator") {
+            return "#ff9f0a";
+        }
+        if ($variant === "action") {
+            return '#858589';
+        }
+        return "#98989c";
+    }};
+
+    color: #ffffff;
+
+    font-size: 1.5rem;   
 `;
