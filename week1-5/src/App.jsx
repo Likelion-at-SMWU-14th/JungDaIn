@@ -1,4 +1,4 @@
-import * as S from "./styles/Calculator.Styled";
+import * as S from "./styles/Calculator.Styled.js";
 
 function App() {
   return (
