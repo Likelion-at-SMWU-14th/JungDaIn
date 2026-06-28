@@ -1,5 +1,6 @@
 import "./App.css";
 import styled from "styled-components";
+import Header from "./components/Header";  
 import BannerCard from "./components/BannerCard";
 import BookCard from "./components/BookCard";
 import CategoryTab from "./components/CategoryTab";
@@ -31,7 +32,7 @@ const BANNERS = [
 const BOOKS = [
   { id: 1, title: "정원 이야기", imgSrc: md1, highlight: false },
   { id: 2, title: "우리의 여름은 문장이 된다", imgSrc: md2, highlight: false },
-  { id: 3, title: "10대를 위한 꽉 변호사의 법률교실", imgSrc: md3, highlight: true },
+  { id: 3, title: "10대를 위한 꽉 변호사의 법률교실", imgSrc: md3, highlight: false },
 ];
 const TABS = ["국내도서", "외국도서", "eBook", "sam", "핫트랙스"];
 
@@ -66,36 +67,37 @@ const TabWrapper = styled.div`
 
 const BookGrid = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 100px;
   flex-wrap: wrap;
 `;
 
 function App() {
   return (
-    <AppWrapper>
-      {/* 배너 섹션 */}
-      <BannerSection>
-        {BANNERS.map((banner, idx) => (
-          <BannerCard key={idx} {...banner} />
-        ))}
-      </BannerSection>
-
-      {/* MD 추천 섹션 */}
-      <SectionHeader>
-        <SectionTitle>MD들이 신중하게 골랐어요</SectionTitle>
-        <TabWrapper>
-          {TABS.map((tab, idx) => (
-            <CategoryTab key={idx} label={tab} active={idx === 0} />
+    <>
+    <Header />
+      <AppWrapper>
+        <BannerSection>
+          {BANNERS.map((banner, idx) => (
+            <BannerCard key={idx} {...banner} />
           ))}
-        </TabWrapper>
-      </SectionHeader>
+        </BannerSection>
 
-      <BookGrid>
-        {BOOKS.map((book) => (
-          <BookCard key={book.id} {...book} />
-        ))}
-      </BookGrid>
-    </AppWrapper>
+        <SectionHeader>
+          <SectionTitle>MD들이 신중하게 골랐어요</SectionTitle>
+          <TabWrapper>
+            {TABS.map((tab, idx) => (
+              <CategoryTab key={idx} label={tab} active={idx === 0} />
+            ))}
+          </TabWrapper>
+        </SectionHeader>
+
+        <BookGrid>
+          {BOOKS.map((book) => (
+            <BookCard key={book.id} {...book} />
+          ))}
+        </BookGrid>
+      </AppWrapper>
+    </>
   );
 }
 
