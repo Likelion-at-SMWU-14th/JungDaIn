@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function UserInfo() {
     const [name,setName] = useState("");
     const [nickname,setNickname] = useState("");
+
+    useEffect(() => {
+        console.log("nickname이 변경될 때마다 렌더링!");
+        console.log({ nickname });
+    }, [nickname]);
 
     return (
         <div>
