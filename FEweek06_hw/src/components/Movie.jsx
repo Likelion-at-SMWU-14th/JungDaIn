@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 // 과제1 - 장르 추가
-const genres = ["전체", "로맨스", "드라마", "범죄", "스릴러", "SF"];
+const genres = ["전체", "로맨스", "드라마", "범죄", "스릴러", "SF", "공포"];
 
 function Movie() {
     const [movies, setMovies] = useState([]);
@@ -19,6 +19,12 @@ function Movie() {
                 console.error("에러 발생", err);
             });
     }, []);
+
+    // 특정 장르 필터링 기능
+    const filteredMovies =
+    selectedGenre === "전체"
+      ? movies
+      : movies.filter((movie) => movie.genre === selectedGenre);
 
     return (
         <Container>
@@ -36,7 +42,7 @@ function Movie() {
             </GenreList>
 
             <MovieGrid>
-                {movies.map((movie) => (
+                {filteredMovies.map((movie) => (
                     <MovieCard key={movie.id}>
                         <Poster src={movie.poster} alt={movie.title} />
 
