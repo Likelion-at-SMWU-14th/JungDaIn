@@ -7,6 +7,7 @@ const genres = ["전체", "로맨스", "드라마", "범죄", "스릴러", "SF"]
 
 function Movie() {
     const [movies, setMovies] = useState([]);
+    const [selectedGenre, setSelectedGenre] = useState("전체");  // 선택 장르 useState로 관리
 
     useEffect(() => {
         axios
@@ -22,6 +23,17 @@ function Movie() {
     return (
         <Container>
             <Title>무비차트</Title>
+            <GenreList>
+              {genres.map((genre) => (
+                <GenreButton
+                  key={genre}
+                  $isSelected={genre === selectedGenre}
+                  onClick={() => setSelectedGenre(genre)}
+                >
+                  {genre}
+                </GenreButton>
+              ))}
+            </GenreList>
 
             <MovieGrid>
                 {movies.map((movie) => (
@@ -110,4 +122,20 @@ const Description = styled.p`
   color: #cccccc;
   font-size: 14px;
   line-height: 1.5;
+`;
+
+// 기존 스타일 컴포넌트들 밑에 추가
+const GenreList = styled.div`
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+`;
+
+const GenreButton = styled.button`
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: ${(props) => (props.$isSelected ? "#333" : "#eee")};
+  color: ${(props) => (props.$isSelected ? "#fff" : "#333")};
 `;
