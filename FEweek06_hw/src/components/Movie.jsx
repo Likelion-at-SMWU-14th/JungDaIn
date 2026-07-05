@@ -8,7 +8,7 @@ const genres = ["전체", "로맨스", "드라마", "범죄", "스릴러", "SF",
 function Movie() {
     const [movies, setMovies] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState("전체");  // 선택 장르 useState로 관리
-    const [searchTerm, setSetchTerm] = useState("");  // 검색어 저장 state
+    const [searchTerm, setSearchTerm] = useState("");  // 검색어 저장 state
 
     useEffect(() => {
         axios
@@ -26,6 +26,11 @@ function Movie() {
     selectedGenre === "전체"
       ? movies
       : movies.filter((movie) => movie.genre === selectedGenre);
+
+    // 검색어 필터링 기능
+      const searchedMovies = filteredMovies.filter((movie) =>
+      movie.title.includes(searchTerm)
+    );
 
     return (
         <Container>
@@ -50,7 +55,10 @@ function Movie() {
             />
 
             <MovieGrid>
-                {filteredMovies.map((movie) => (
+              {searchedMovies.length === 0 ? (
+                <EmptyMessage>검색 결과가 없습니다.</EmptyMessage>
+              ) : (
+                searchedMovies.map((movie) => (
                     <MovieCard key={movie.id}>
                         <Poster src={movie.poster} alt={movie.title} />
 
@@ -61,7 +69,8 @@ function Movie() {
                             <Description>{movie.description}</Description>
                         </MovieInfo>
                     </MovieCard>
-                ))}
+                ))
+              )}
             </MovieGrid>
         </Container>
     );
@@ -161,4 +170,9 @@ const SearchInput = styled.input`
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 14px;
+`;
+
+const EmptyMessage = styled.p`
+  color: #999;
+  margin-top: 40px;
 `;
