@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from "styled-components";
 
-const Movie = () => {
+// 과제1 - 장르 추가
+const genres = ["전체", "로맨스", "드라마", "범죄", "스릴러", "SF"];
+
+function Movie() {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
