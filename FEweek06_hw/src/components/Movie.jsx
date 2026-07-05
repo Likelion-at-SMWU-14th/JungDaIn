@@ -8,6 +8,7 @@ const genres = ["전체", "로맨스", "드라마", "범죄", "스릴러", "SF",
 function Movie() {
     const [movies, setMovies] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState("전체");  // 선택 장르 useState로 관리
+    const [searchTerm, setSetchTerm] = useState("");  // 검색어 저장 state
 
     useEffect(() => {
         axios
@@ -40,6 +41,13 @@ function Movie() {
                 </GenreButton>
               ))}
             </GenreList>
+
+            <SearchInput
+              type="text"
+              placeholder="영화 제목을 검색해보세요"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
 
             <MovieGrid>
                 {filteredMovies.map((movie) => (
@@ -144,4 +152,13 @@ const GenreButton = styled.button`
   cursor: pointer;
   background-color: ${(props) => (props.$isSelected ? "#333" : "#eee")};
   color: ${(props) => (props.$isSelected ? "#fff" : "#333")};
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
 `;
