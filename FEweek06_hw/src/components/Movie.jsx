@@ -28,8 +28,11 @@ function Movie() {
       : movies.filter((movie) => movie.genre === selectedGenre);
 
     // 검색어 필터링 기능
-      const searchedMovies = filteredMovies.filter((movie) =>
-      movie.title.includes(searchTerm)
+    const searchedMovies = filteredMovies.filter(
+      (movie) =>
+        movie.title.includes(searchTerm) ||
+        movie.genre.includes(searchTerm) ||
+        movie.description.includes(searchTerm)
     );
 
     return (
