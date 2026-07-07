@@ -1,0 +1,181 @@
+import { useEffect, useState } from 'react';
+import axios from "axios";
+import styled from "styled-components";
+
+// 과제1 - 장르 추가
+const genres = ["전체", "로맨스", "드라마", "범죄", "스릴러", "SF", "공포"];
+
+function Movie() {
+    const [movies, setMovies] = useState([]);
+    const [selectedGenre, setSelectedGenre] = useState("전체");  // 선택 장르 useState로 관리
+    const [searchTerm, setSearchTerm] = useState("");  // 검색어 저장 state
+
+    useEffect(() => {
+        axios
+            .get("http://localhost:8000/movies")
+            .then((res) => {
+                setMovies(res.data);
+            })
+            .catch((err) => {
+                console.error("에러 발생", err);
+            });
+    }, []);
+
+    // 특정 장르 필터링 기능
+    const filteredMovies =
+    selectedGenre === "전체"
+      ? movies
+      : movies.filter((movie) => movie.genre === selectedGenre);
+
+    // 검색어 필터링 기능
+    const searchedMovies = filteredMovies.filter(
+      (movie) =>
+        movie.title.includes(searchTerm) ||
+        movie.genre.includes(searchTerm) ||
+        movie.description.includes(searchTerm)
+    );
+
+    return (
+        <Container>
+            <Title>무비차트</Title>
+            <GenreList>
+              {genres.map((genre) => (
+                <GenreButton
+                  key={genre}
+                  $isSelected={genre === selectedGenre}
+                  onClick={() => setSelectedGenre(genre)}
+                >
+                  {genre}
+                </GenreButton>
+              ))}
+            </GenreList>
+
+            <SearchInput
+              type="text"
+              placeholder="영화 제목을 검색해보세요"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+
+            <MovieGrid>
+              {searchedMovies.length === 0 ? (
+                <EmptyMessage>검색 결과가 없습니다.</EmptyMessage>
+              ) : (
+                searchedMovies.map((movie) => (
+                    <MovieCard key={movie.id}>
+                        <Poster src={movie.poster} alt={movie.title} />
+
+                        <MovieInfo>
+                            <MovieTitle>{movie.title}</MovieTitle>
+                            <Rating>★ {movie.rating}</Rating>
+                            <Genre>{movie.genre}</Genre>
+                            <Description>{movie.description}</Description>
+                        </MovieInfo>
+                    </MovieCard>
+                ))
+              )}
+            </MovieGrid>
+        </Container>
+    );
+};
+
+export default Movie;
+
+
+const Container = styled.div`
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px;
+  background-color: #ffffff;
+  color: #111;
+`;
+
+const Title = styled.h3`
+  margin-bottom: 24px;
+  font-size: 28px;
+  font-weight: 700;
+`;
+
+const MovieGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+`;
+
+const MovieCard = styled.div`
+  overflow: hidden;
+  border-radius: 16px;
+  background-color: #1f1f1f;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+`;
+
+const Poster = styled.img`
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+`;
+
+const MovieInfo = styled.div`
+  padding: 16px;
+`;
+
+const MovieTitle = styled.h2`
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+`;
+
+const Rating = styled.p`
+  margin-bottom: 8px;
+  color: #ffd166;
+  font-size: 15px;
+`;
+
+const Genre = styled.p`
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: #ff7a2f;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+`;
+
+const Description = styled.p`
+  color: #cccccc;
+  font-size: 14px;
+  line-height: 1.5;
+`;
+
+// 기존 스타일 컴포넌트들 밑에 추가
+const GenreList = styled.div`
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+`;
+
+const GenreButton = styled.button`
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: ${(props) => (props.$isSelected ? "#333" : "#eee")};
+  color: ${(props) => (props.$isSelected ? "#fff" : "#333")};
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+`;
+
+const EmptyMessage = styled.p`
+  color: #999;
+  margin-top: 40px;
+`;
