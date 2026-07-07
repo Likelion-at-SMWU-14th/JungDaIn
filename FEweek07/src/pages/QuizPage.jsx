@@ -1,14 +1,6 @@
-import { useState } from "react";
-// 1️⃣ useRef import 하기
-import { useRef } from "react";
+import { useQuiz } from "../hooks/useQuiz";
 
 const QuizPage = () => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [userAnswer, setUserAnswer] = useState("");
-  const [answers, setAnswers] = useState([]);
-  // 2️⃣ useRef()로 ref 객체(inputRef) 생성
-  const inputRef = useRef(null);
-
   const questions = [
     { question: "React에서 상태를 관리하는 Hook은?", answer: "useState" },
     {
@@ -18,28 +10,15 @@ const QuizPage = () => {
     { question: "DOM에 직접 접근할 때 사용하는 Hook은?", answer: "useRef" },
   ];
 
-  const handleSubmit = () => {
-    const newAnswers = [...answers];
-    newAnswers[currentQuestion] = userAnswer;
-    setAnswers(newAnswers);
-
-    // 4️⃣-1. 다음 문제로 이동하면서 input에 포커스 (아래에 setTimeout 주석처리만 풀면 됨)
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion((prev) => prev + 1);
-      setUserAnswer("");
-      setTimeout(() => inputRef.current?.focus(), 0);
-    }
-  };
-
-  const handleReset = () => {
-    setCurrentQuestion(0);
-    setUserAnswer("");
-    setAnswers([]);
-    // 4️⃣-2. input 내용 지우기
-    inputRef.current.value = "";
-    // 4️⃣-3. input에 포커스 하기
-    inputRef.current.focus();
-  };
+  const {
+    currentQuestion,
+    userAnswer,
+    setUserAnswer,
+    answers,
+    inputRef,
+    handleSubmit,
+    handleReset,
+  } = useQuiz(questions);
 
   return (
     <div className="quiz-container">
