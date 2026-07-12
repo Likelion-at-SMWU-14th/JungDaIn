@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
-import Favorit from "./pages/Favorit";
+import Favorite from "./pages/Favorite";
 import { useFavorites } from "./hooks/useFavorites";
 import { songs } from "./data/songs";
 
 function App() {
-  const { favoriteIds, toggleFavorite, isFavorite } = useFavorites();
+  const { favoriteId, toggleFavorite, isFavorite } = useFavorites();
 
   return (
     <BrowserRouter>
@@ -17,8 +17,8 @@ function App() {
           }
         />
         <Route
-          path="/favorit"
-          element={<Favorit songs={songs} favoriteIds={favoriteIds} />}
+          path="/favorite"
+          element={<Favorite songs={songs} favoriteId={favoriteId} />}
         />
       </Routes>
     </BrowserRouter>

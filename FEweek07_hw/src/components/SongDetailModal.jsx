@@ -3,6 +3,7 @@ import {
   ModalBox,
   CoverImg,
   InfoBox,
+  SongTitle,
   ArtistName,
   InfoTable,
   LikeRow,
@@ -15,7 +16,7 @@ function SongDetailModal({ song, modalRef, isFavorite, onToggleFavorite }) {
       <ModalBox ref={modalRef}>
         <CoverImg src={song.cover} alt={song.title} />
         <InfoBox>
-          <h2>{song.title}</h2>
+          <SongTitle>{song.title}</SongTitle>
           <ArtistName>{song.artist}</ArtistName>
           <InfoTable>
             <tbody>
@@ -28,7 +29,7 @@ function SongDetailModal({ song, modalRef, isFavorite, onToggleFavorite }) {
           <LikeRow>
             <span>이 곡이 마음에 드시나요?</span>
             <HeartButton $isFavorite={isFavorite} onClick={onToggleFavorite}>
-              {isFavorite ? "♥" : "♡"}
+              {isFavorite ? "❤️" : "🩶"}
             </HeartButton>
           </LikeRow>
         </InfoBox>

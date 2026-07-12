@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useMemo } from "react";
 import {
   FavoritWrapper,
@@ -8,19 +9,21 @@ import {
   SongTitle,
   SongArtist,
   EmptyState,
-} from "./Favorit.styles";
+} from "./Favorite.styles";
 
-function Favorit({ songs, favoriteIds }) {
+function Favorite({ songs, favoriteId }) {
+  const navigate = useNavigate();
+
   const favoriteSongs = useMemo(
-    () => songs.filter((song) => favoriteIds.includes(song.id)),
-    [songs, favoriteIds]
+    () => songs.filter((song) => favoriteId.includes(song.id)),
+    [songs, favoriteId]
   );
 
   return (
     <FavoritWrapper>
       <Header>
         <h1>My "Favorit" playlist ♡</h1>
-        <NoteIcon>♪</NoteIcon>
+        <NoteIcon onClick={() => navigate("/")}>♪</NoteIcon>
       </Header>
 
       {favoriteSongs.length > 0 ? (
@@ -40,4 +43,4 @@ function Favorit({ songs, favoriteIds }) {
   );
 }
 
-export default Favorit;
+export default Favorite;
