@@ -11,7 +11,7 @@ const CommentList = () => {
         .get("http://127.0.0.1:8000/entries/")
         .then((res) => {
             console.log(res);
-            setComments(res.data);
+            setComments(res.data.reverse());
         })
         .catch((err) => {
             console.log(err);
@@ -20,7 +20,7 @@ const CommentList = () => {
   useEffect(() => {
     getComment();
   }, []);
-  
+
   return (
     <CommentWrapper>
       {comments.map((comment) => (
