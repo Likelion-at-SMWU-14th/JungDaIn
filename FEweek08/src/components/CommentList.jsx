@@ -1,9 +1,26 @@
-import { COMMENT_DATA } from "../constant/comment";
 import Comment from "./Comment";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const CommentList = () => {
-  const comments = COMMENT_DATA;
+  const [comments, setComments] = useState([]);
+
+  const getComment = () => {
+    axios
+        .get("http://127.0.0.1:8000/entries/")
+        .then((res) => {
+            console.log(res);
+            setComments(res.data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+  };
+  useEffect(() => {
+    getComment();
+  }, []);
+  
   return (
     <CommentWrapper>
       {comments.map((comment) => (
