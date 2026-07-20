@@ -8,6 +8,7 @@ import axios from "axios";
 
 const DetailPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); 
   const [detail, setDetail] = useState([]);
 
   const getDetail = (id) => {
@@ -30,7 +31,7 @@ const DetailPage = () => {
     <DetailPageWrapper>
       <DetailComment detail={detail} />
       <ButtonWrapper>
-        <Button text="수정하기" />
+        <Button text="수정하기" onBtnClick={() => navigate(`/edit/${id}`)} />
         <Button text="삭제하기" />
       </ButtonWrapper>
     </DetailPageWrapper>

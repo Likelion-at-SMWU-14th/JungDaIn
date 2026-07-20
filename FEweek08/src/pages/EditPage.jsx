@@ -85,3 +85,9 @@ const ButtonWrapper = styled.div`
   align-items: center;
   gap: 1.75rem;
 `;
+
+const Message = styled.p`
+  padding: 2rem 3.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+`;
