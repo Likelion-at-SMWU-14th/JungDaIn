@@ -23,6 +23,21 @@ const DetailPage = () => {
       });
   };
 
+  const [deleteError, setDeleteError] = useState(false);
+
+  const deleteComment = () => {
+    axios
+      .delete(`http://127.0.0.1:8000/entries/${id}/`)
+      .then((res) => {
+        console.log("게시글 삭제가 완료되었습니다.");
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        setDeleteError(true);
+      });
+  };
+
   useEffect(() => {
     getDetail(id);
   }, [id]);
@@ -32,7 +47,8 @@ const DetailPage = () => {
       <DetailComment detail={detail} />
       <ButtonWrapper>
         <Button text="수정하기" onBtnClick={() => navigate(`/edit/${id}`)} />
-        <Button text="삭제하기" />
+        <Button text="삭제하기" onBtnClick={deleteComment} />
+        {deleteError && <Message>게시글 삭제에 실패했습니다. 잠시 후 다시 시도해주세요 !!</Message>}
       </ButtonWrapper>
     </DetailPageWrapper>
   );
