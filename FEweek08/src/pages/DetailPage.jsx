@@ -1,13 +1,31 @@
 import React from "react";
 import Button from "../components/Button";
 import styled from "styled-components";
-import { COMMENT_DATA } from "../constant/comment";
 import DetailComment from "../components/DetailComment";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const DetailPage = () => {
   const { id } = useParams();
-  const detail = COMMENT_DATA.find((comment) => comment.id === Number(id));
+  const [detail, setDetail] = useState([]);
+
+  const getDetail = (id) => {
+    axios
+      .get(`http://127.0.0.1:8000/entries/${id}/`)
+      .then((res) => {
+        console.log(res);
+        setDetail(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getDetail(id);
+  }, [id]);
+
   return (
     <DetailPageWrapper>
       <DetailComment detail={detail} />
