@@ -26,6 +26,9 @@ const DetailPage = () => {
   const [deleteError, setDeleteError] = useState(false);
 
   const deleteComment = () => {
+    const isConfirmed = window.confirm("정말 삭제하시겠습니까?");
+    if (!isConfirmed) return;
+
     axios
       .delete(`http://127.0.0.1:8000/entries/${id}/`)
       .then((res) => {
