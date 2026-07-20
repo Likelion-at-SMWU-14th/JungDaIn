@@ -31,7 +31,12 @@ const WritePage = () => {
 
   return (
     <WritePageWrapper>
-      <CommentForm setAuthor={setAuthor} setComment={setComment} />
+      <CommentForm
+        author={author}
+        comment={comment}
+        setAuthor={setAuthor}
+        setComment={setComment}
+      />
       <ButtonWrapper>
         <Button text="작성하기" onBtnClick={postComment} />
         <Button text="취소" onBtnClick={() => navigate(-1)} />
