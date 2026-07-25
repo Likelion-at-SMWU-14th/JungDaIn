@@ -1,17 +1,19 @@
 import styled from "styled-components";
 
-const CommentForm = ( { setAuthor, setComment }) => {
+const CommentForm = ({ comment, setComment }) => {
   return (
     <FormWrapper>
       <InputWrapper>
-        <Label>이름</Label>
-        <Input placeholder="이름을 입력해주세요" 
-        onChange={(e) => setAuthor(e.target.value)}/>
-      </InputWrapper>
-      <InputWrapper>
-        <Label>내용</Label>
-        <TextArea placeholder="내용을 입력해주세요" 
-        onChange={(e) => setComment(e.target.value)}/>
+        <Label htmlFor="comment">내용</Label>
+
+        <TextArea
+          id="comment"
+          name="comment"
+          placeholder="내용을 입력해주세요"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          autoFocus
+        />
       </InputWrapper>
     </FormWrapper>
   );
@@ -39,30 +41,13 @@ const InputWrapper = styled.div`
   gap: 0.75rem;
 `;
 
-const Label = styled.p`
+const Label = styled.label`
   margin: 0;
   color: var(--text-black);
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-`;
-
-const Input = styled.input`
-  display: flex;
-  padding: 1.0625rem 1.5rem;
-  align-items: flex-start;
-  gap: 0.625rem;
-  border: none;
-  outline: none;
-  border-radius: 0.4375rem;
-  background: rgba(245, 241, 237, 0.5);
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 400;
-  &::placeholder {
-    color: var(--text-brown);
-  }
 `;
 
 const TextArea = styled.textarea`
@@ -76,6 +61,7 @@ const TextArea = styled.textarea`
   resize: none;
   border-radius: 0.4375rem;
   background: rgba(245, 241, 237, 0.5);
+  color: var(--text-black);
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 400;

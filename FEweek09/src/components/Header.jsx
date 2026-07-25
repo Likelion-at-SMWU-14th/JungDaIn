@@ -1,10 +1,44 @@
-import React from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import api, { clearAuthStorage } from "../apis/api";
 
 const Header = ({ title, description, button }) => {
   const navigate = useNavigate();
+
+  const accessToken = localStorage.getItem("accessToken");
+
+  const isLoggedIn = Boolean(accessToken);
+
+  const handleWriteClick = () => {
+    if (!isLoggedIn) {
+      const shouldLogin = window.confirm(
+        "게시글을 작성하려면 로그인이 필요해요. 로그인 페이지로 이동할까요?",
+      );
+
+      if (shouldLogin) {
+        navigate("/login");
+      }
+
+      return;
+    }
+
+    navigate("/write");
+  };
+
+  const handleLogout = async () => {
+    try {
+      await api.post("/logout/");
+    } catch (error) {
+      console.error("로그아웃 요청 실패:", error);
+    } finally {
+      clearAuthStorage();
+
+      alert("로그아웃되었습니다.");
+      navigate("/");
+      window.location.reload();
+    }
+  };
 
   return (
     <HeaderContainer>
@@ -12,9 +46,16 @@ const Header = ({ title, description, button }) => {
         <Title>{title}</Title>
         <Description>{description}</Description>
       </HeaderInfo>
-      {button && (
-        <Button text="TMI 작성하기" onBtnClick={() => navigate("/write")} />
-      )}
+
+      <ButtonGroup>
+        {isLoggedIn ? (
+          <Button text="로그아웃" onBtnClick={handleLogout} />
+        ) : (
+          <Button text="로그인" onBtnClick={() => navigate("/login")} />
+        )}
+
+        {button && <Button text="TMI 작성하기" onBtnClick={handleWriteClick} />}
+      </ButtonGroup>
     </HeaderContainer>
   );
 };
@@ -51,4 +92,10 @@ const Description = styled.p`
   color: var(--text-brown);
   font-size: 1.25rem;
   font-weight: 500;
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `;

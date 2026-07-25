@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 
 const LoginPage = () => {
@@ -16,45 +17,51 @@ const LoginPage = () => {
     if (!isFormValid || isLoading) return;
 
     try {
-        setIsLoading(true);
+      setIsLoading(true);
 
-        const response = await axios.post(
+      const response = await axios.post(
         "http://127.0.0.1:8000/login/",
         { username, password },
         { withCredentials: true },
-        );
+      );
 
-        const accessToken =
-        response.data.accessToken ?? response.data.access;
+      const accessToken = response.data.accessToken ?? response.data.access;
 
-        if (!accessToken) {
+      if (!accessToken) {
         throw new Error("Access Token이 없습니다.");
-        }
+      }
 
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem(
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem(
         "username",
         response.data.username ?? username.trim(),
-        );
+      );
 
-        alert("로그인에 성공했어요!");
-        navigate("/");
+      alert("로그인에 성공했어요!");
+      navigate("/");
     } catch (error) {
-        if (error.response?.status === 401) {
+      if (error.response?.status === 401) {
         alert("아이디 또는 비밀번호를 확인해주세요.");
         return;
-        }
+      }
 
-        alert("로그인 중 오류가 발생했습니다.");
+      alert("로그인 중 오류가 발생했습니다.");
     } finally {
-        setIsLoading(false);
+      setIsLoading(false);
     }
-    };
+  };
 
   return (
     <PageWrapper>
       <LoginContainer>
-        <Title>숙멋 프론트 TMI 게시판</Title>
+        <LogoWrapper>
+          <Logo>
+            LIKELION
+            <Generation>14TH</Generation>
+          </Logo>
+
+          <Title>숙멋 프론트 TMI 게시판</Title>
+        </LogoWrapper>
 
         <LoginForm onSubmit={handleLogin}>
           <InputGroup>
@@ -66,6 +73,7 @@ const LoginPage = () => {
               value={username}
               onChange={(event) => setUsername(event.target.value)}
               autoComplete="username"
+              autoFocus
             />
           </InputGroup>
 
@@ -82,8 +90,18 @@ const LoginPage = () => {
           </InputGroup>
 
           <LoginButton type="submit" disabled={!isFormValid || isLoading}>
-            {isLoading ? "로그인 중..." : "로그인"}</LoginButton>
+            {isLoading ? "로그인 중..." : "로그인"}
+          </LoginButton>
         </LoginForm>
+
+        <BottomText>
+          아직 계정이 없으신가요?
+          <SignUpButton type="button">회원가입하기</SignUpButton>
+        </BottomText>
+
+        <BackButton type="button" onClick={() => navigate("/")}>
+          게시판으로 돌아가기
+        </BackButton>
       </LoginContainer>
     </PageWrapper>
   );

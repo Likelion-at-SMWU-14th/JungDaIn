@@ -1,40 +1,81 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../apis/api";
+import styled from "styled-components";
+
 import Button from "../components/Button";
 import CommentForm from "../components/CommentForm";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useState } from "react";
 
 const WritePage = () => {
   const navigate = useNavigate();
 
-  const [author, setAuthor] = useState("");
   const [comment, setComment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const postComment = () => {
-    axios
-        .post("http://127.0.0.1:8000/entries/", {
-            author: author,
-            comment: comment,
-        })
+  const accessToken = localStorage.getItem("accessToken");
+  const username = localStorage.getItem("username");
 
-        .then((res) => {
-            alert("게시글 작성이 완료되었어요.");
-            console.log("게시글 작성 완료");
-            navigate("/");
-        })
-        .catch((err) => {
-            console.log(err);
-            alert("게시글 작성 실패");
-        });
+  useEffect(() => {
+    if (!accessToken) {
+      alert("게시글을 작성하려면 로그인이 필요해요.");
+
+      navigate("/login", {
+        replace: true,
+      });
+    }
+  }, [accessToken, navigate]);
+
+  const postComment = async () => {
+    if (!comment.trim()) {
+      alert("내용을 입력해 주세요.");
+      return;
+    }
+
+    if (!accessToken || !username) {
+      alert("로그인 정보가 없습니다. 다시 로그인해 주세요.");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+
+      await api.post("/entries/", {
+        comment: comment.trim(),
+      });
+
+      alert("게시글 작성이 완료되었어요!");
+      navigate("/");
+    } catch (error) {
+      console.error("게시글 작성 실패:", error);
+
+      if (error.response?.status === 401) {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("username");
+
+        alert("로그인 정보가 만료되었어요. 다시 로그인해주세요.");
+
+        navigate("/login");
+        return;
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  if (!accessToken) {
+    return null;
+  }
 
   return (
     <WritePageWrapper>
-        <CommentForm setAuthor={setAuthor} setComment={setComment} />
+      <CommentForm comment={comment} setComment={setComment} />
+
       <ButtonWrapper>
-        <Button text="작성하기" onBtnClick={postComment} />
+        <Button
+          text={isSubmitting ? "작성 중..." : "작성하기"}
+          onBtnClick={postComment}
+        />
         <Button text="취소" onBtnClick={() => navigate(-1)} />
       </ButtonWrapper>
     </WritePageWrapper>

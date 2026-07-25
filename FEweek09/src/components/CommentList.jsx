@@ -1,48 +1,47 @@
 import Comment from "./Comment";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 const CommentList = () => {
+  const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-    const [ comments, setComments ] = useState([]);
-    const [ loading, setLoading ] = useState(true);
-    const [ error, setError ] = useState(false);
+  const getComment = () => {
+    setLoading(true);
+    setError(false);
 
-    const getComment = () => {
-        setLoading(true);
-        setError(false);
+    axios
+      .get("http://127.0.0.1:8000/entries/")
+      .then((res) => {
+        console.log(res);
+        setComments(res.data.reverse());
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
-        axios
-            .get ("http://127.0.0.1:8000/entries/")
-            .then((res) => {
-                console.log(res);
-                setComments(res.data.reverse());
-            })
-            .catch((err) => {
-                console.log(err);
-                setError(true);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    };
+  useEffect(() => {
+    getComment();
+  }, []);
 
-    useEffect(() => {
-        getComment();
-    }, []);
+  if (loading) {
+    return <Message>게시글을 불러오는 중입니다.</Message>;
+  }
 
-    if (loading) {
-        return <Message>게시글을 불러오는 중입니다.</Message>;
-    }
+  if (error) {
+    return <Message>게시글을 불러오지 못했습니다. 잠시 후 다시 시도.</Message>;
+  }
 
-    if (error) {
-        return <Message>게시글을 불러오지 못했습니다. 잠시 후 다시 시도.</Message>;
-    }
-
-    if (comments.length == 0){
-        return <Message>아직 등록된 게시글이 없습니다</Message>;
-    }
+  if (comments.length == 0) {
+    return <Message>아직 등록된 게시글이 없습니다</Message>;
+  }
 
   return (
     <CommentWrapper>
