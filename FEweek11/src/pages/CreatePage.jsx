@@ -1,12 +1,15 @@
+import { useContext } from "react";
+import TitleContext from "../context/TitleContext";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 
 const CreatePage = () => {
   const navigate = useNavigate();
+  const title = useContext(TitleContext);
 
   return (
     <Wrapper>
-      <Title>리뷰 작성</Title>
+      <Title>{title} 리뷰 작성</Title>
 
       <Field>
         <Label>영화 포스터</Label>

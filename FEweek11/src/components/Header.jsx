@@ -1,15 +1,16 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 import ToggleBtn from "./ToggleBtn";
+import TitleContext from "../context/TitleContext";
 
 const Header = () => {
   const navigate = useNavigate();
+  const title = useContext(TitleContext);
 
   return (
     <HeaderBar>
-      <Logo>
-        CINÉ<span>NOTE</span>
-      </Logo>
+      <Logo>{title}</Logo>
       <Actions>
         <ToggleBtn />
         <WriteButton onClick={() => navigate("/create")}>리뷰 작성</WriteButton>
