@@ -37,8 +37,8 @@ const Wrapper = styled.div`
   min-height: 100vh;
   margin: 0;
   padding: 30px 100px;
-  background-color: #f7f3ec;
-  color: #1f1b17;
+  background-color: ${({ theme }) => theme.bg};
+  color: ${({ theme }) => theme.text};
 `;
 
 const Title = styled.h1`
@@ -65,8 +65,8 @@ const TextInput = styled.input`
   padding: 14px 16px;
   font-family: "Inter", sans-serif;
   font-size: 14px;
-  color: #1f1b17;
-  background-color: #ffffff;
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.bg};
   border: 1px solid #e4ddd0;
   border-radius: 10px;
   outline: none;
@@ -81,8 +81,8 @@ const FileInput = styled.input`
   width: 100%;
   padding: 12px 16px;
   font-size: 13px;
-  color: #6b6259;
-  background-color: #ffffff;
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.bg};
   border: 1px dashed #e4ddd0;
   border-radius: 10px;
 
@@ -105,8 +105,8 @@ const TextArea = styled.textarea`
   padding: 14px 16px;
   font-family: "Inter", sans-serif;
   font-size: 14px;
-  color: #1f1b17;
-  background-color: #ffffff;
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.bg};
   border: 1px solid #e4ddd0;
   border-radius: 10px;
   outline: none;
