@@ -1,8 +1,8 @@
 import { createContext, useState } from 'react';
 
-const ThemaContext = createContext();
+const ThemeContext = createContext();
 
-export const ThemaContextProvider = ({ children }) => {
+export const ThemeContextProvider = ({ children }) => {
     const [isDark, setIsDark] = useState(false);
     const toggleTheme = () => {
         setIsDark((prev) => !prev);
@@ -10,10 +10,10 @@ export const ThemaContextProvider = ({ children }) => {
     };
 
     return (
-        <ThemaContext.Provider value={{ isDark, toggleTheme }}>
+        <ThemeContext.Provider value={{ isDark, toggleTheme }}>
             {children}
-        </ThemaContext.Provider>
+        </ThemeContext.Provider>
     );
 };
 
-export default ThemaContext;
+export default ThemeContext;
