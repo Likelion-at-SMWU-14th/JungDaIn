@@ -18,8 +18,8 @@ export default ReviewItem;
 const ReviewDiv = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
-  border: 1px solid #e4ddd0;
+  background-color: ${({ theme }) => theme.surface};
+  border: 1px solid ${({ theme }) => theme.border};
   border-radius: 12px;
   overflow: hidden;
 `;
@@ -54,7 +54,7 @@ const Title = styled.div`
   font-family: "Playfair Display", serif;
   font-size: 18px;
   font-weight: 700;
-  color: #1f1b17;
+  color: ${({ theme }) => theme.text};
   white-space: nowrap;
   text-overflow: ellipsis;
 `;
@@ -67,5 +67,5 @@ const Comment = styled.div`
   -webkit-box-orient: vertical;
   font-size: 13px;
   line-height: 1.6;
-  color: #6b6259;
+  color: ${({ theme }) => theme.muted};
 `;

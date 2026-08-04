@@ -16,8 +16,8 @@ export default ReviewPage;
 const Wrapper = styled.div`
   min-height: 100vh;
   font-family: "Inter", sans-serif;
-  background-color: #f7f3ec;
-  color: #1f1b17;
+  background-color: ${({ theme }) => theme.bg};
+  color: ${({ theme }) => theme.text};
 `;
 
 const Content = styled.div`

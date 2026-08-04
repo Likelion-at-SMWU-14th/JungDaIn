@@ -17,7 +17,7 @@ const ToggleButton = styled.button`
   padding: 9px 18px;
   font-family: "Inter", sans-serif;
   font-size: 14px;
-  color: #1f1b17;
+  color: ${({ theme }) => theme.text};
   background-color: transparent;
   border: 1px solid #e4ddd0;
   border-radius: 30px;

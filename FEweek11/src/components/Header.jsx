@@ -29,7 +29,7 @@ const HeaderBar = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 12px 60px;
-  background-color: #f7f3ec;
+  background-color: ${({ theme }) => theme.bg};
   border-bottom: 1px solid #e4ddd0;
 `;
 
@@ -38,10 +38,10 @@ const Logo = styled.h1`
   font-size: 26px;
   font-weight: 700;
   letter-spacing: 0.5px;
-  color: #1f1b17;
+  color: ${({ theme }) => theme.text};
 
   span {
-    color: #b8860b;
+    color: ${({ theme }) => theme.accent};
   }
 `;
 
