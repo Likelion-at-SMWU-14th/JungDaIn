@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "오디세이",
+      "img": "https://image.cine21.com/resize/cine21/poster/2026/0713/17_22_12__6a54a03427b8f[X280,400].jpg",
+      "comment": "크리스토퍼 놀란 감독이 신화 '오디세이아'를 스크린에 펼쳐낸다. 귀향을 향한 오디세우스의 여정과 신들의 시련."
+    },
+    {
+      "id": 2,
+      "title": "스파이더맨: 브랜드 뉴 데이",
+      "img": "https://image.cine21.com/resize/cine21/poster/2026/0506/63091_69faead72bed7[X280,400].jpg",
+      "comment": "모두의 기억에서 사라진 피터 파커. 사랑도 우정도 잃은 그가 새로운 빌런과 맞서는 이야기."
+    },
+    {
+      "id": 3,
+      "title": "사랑의 하츄핑: 고래보석의 전설",
+      "img": "https://image.cine21.com/resize/cine21/poster/2026/0703/63075_6a472a406f554[X280,400].jpg",
+      "comment": "바닷속으로 사라진 엄마를 구하기 위한 로미와 하츄핑의 모험. 가족 애니메이션 여름 기대작."
+    },
+    {
+      "id": 4,
+      "title": "미니언즈 & 몬스터즈",
+      "img": "https://image.cine21.com/resize/cine21/poster/2026/0615/17_19_10__6a2fb57ece496[X280,400].jpg",
+      "comment": "천만 관객 거장 감독을 꿈꾸는 미니언즈. 몬스터를 찾아 떠나는 좌충우돌 할리우드 어드벤처."
+    }
+  ]
+}
