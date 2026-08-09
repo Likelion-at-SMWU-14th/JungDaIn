@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import PartContext from "../contexts/PartContext";
+import PartContext from "../context/PartContext";
 import styled from "styled-components";
 
-const Left = ({ setPart }) => {
+const Left = () => {
   const { setPart } = useContext(PartContext);
   return (
     <Wrapper>

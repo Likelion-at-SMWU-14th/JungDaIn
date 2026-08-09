@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
+import Content from "./components/Content";
 import PartContext from "./context/PartContext";
 import { styled } from "styled-components";
 
 function App() {
-  const [part] = useContext(PartContext);
+  const {part} = useContext(PartContext);
   return (
     <Wrapper>
       <div className="title">

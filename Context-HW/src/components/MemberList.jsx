@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { styled } from "styled-components";
 import member from "../sookmut";
-import PartContext from "../contexts/PartContext";
+import PartContext from "../context/PartContext";
 
-const MemberList = ({ part }) => {
+const MemberList = () => {
   const { part } = useContext(PartContext);
   const memberlist = part ? member.filter((m) => m.part === part) : member;
 
