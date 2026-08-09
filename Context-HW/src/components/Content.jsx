@@ -7,8 +7,8 @@ const Content = ({ part, setPart }) => {
   return (
     <Wrapper>
       <div className="content">
-        <Left setPart={setPart} />
-        <Right part={part} />
+        <Left/>
+        <Right/>
       </div>
     </Wrapper>
   );
