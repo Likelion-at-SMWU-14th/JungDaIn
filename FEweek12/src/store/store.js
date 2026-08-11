@@ -10,7 +10,7 @@ const useTodoStore = create((set) => ({
             todos: [...state.todos, { id: Date.now(), title, completed: false }],
         }));
     },
-    retmoveTodo: (id) =>
+    removeTodo: (id) =>
         set((state) => ({
             todos: state.todos.filter((todo) => todo.id !== id),
         })),
@@ -22,4 +22,4 @@ const useTodoStore = create((set) => ({
     })),
 }));
 
-export default store;
+export default useTodoStore;

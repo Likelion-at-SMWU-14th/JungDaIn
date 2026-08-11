@@ -1,5 +1,5 @@
-import useTodoStore from '.../store/store';
-import * as S from './styles/styled';
+import useTodoStore from '../store/store';
+import * as S from '../styles/styled';
 
 const TodoItem = ({ todo }) => {
     const removeTodo = useTodoStore((s) => s.removeTodo);
