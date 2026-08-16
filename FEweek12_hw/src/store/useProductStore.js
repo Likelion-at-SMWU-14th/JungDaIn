@@ -7,8 +7,6 @@ export const useProductStore = create(
     (_set, get) => ({
       products,
       getProductById: (id) => get().products.find((product) => product.id === id),
-      getProductsByCategory: (category) =>
-        get().products.filter((product) => product.category === category),
     }),
     { name: "ProductStore" }
   )

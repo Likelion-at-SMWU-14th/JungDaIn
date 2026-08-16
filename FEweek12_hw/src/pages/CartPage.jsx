@@ -6,11 +6,13 @@ import "./CartPage.css";
 function CartPage() {
   const cartItems = useCartStore((state) => state.cartItems);
 
+  const isEmpty = cartItems.length === 0;
+
   return (
-    <div className="cart-page">
+    <div className={`cart-page${isEmpty ? " cart-page--empty" : ""}`}>
       <h1 className="cart-page__title">The goods you saved</h1>
 
-      {cartItems.length === 0 ? (
+      {isEmpty ? (
         <Link to="/" className="cart-page__empty">
           Do you wanna go shopping again?
         </Link>

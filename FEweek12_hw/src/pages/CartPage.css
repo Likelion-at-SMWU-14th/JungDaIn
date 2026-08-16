@@ -4,6 +4,12 @@
   padding: 60px 24px 120px;
 }
 
+.cart-page--empty {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 220px);
+}
+
 .cart-page__title {
   font-size: 72px;
   font-weight: 600;
@@ -24,7 +30,7 @@
   color: #bebebe;
   text-decoration: none;
   text-align: center;
-  margin-top: 80px;
+  margin: auto;
 }
 
 .cart-page__empty:hover {
