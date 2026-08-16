@@ -1,0 +1,28 @@
+.shop-page {
+  max-width: 1264px;
+  margin: 0 auto;
+  padding: 60px 24px 120px;
+}
+
+.shop-page__title {
+  font-size: 72px;
+  font-weight: 600;
+  text-align: right;
+  margin: 0 0 80px;
+}
+
+.shop-page__section {
+  margin-bottom: 96px;
+}
+
+.shop-page__section-title {
+  font-size: 48px;
+  font-weight: 600;
+  margin: 0 0 32px;
+}
+
+.shop-page__grid {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
