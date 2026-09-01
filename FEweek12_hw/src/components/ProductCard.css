@@ -1,0 +1,35 @@
+.product-card {
+  position: relative;
+  width: 347px;
+  padding: 0 0 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.product-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: transparent;
+  transition: background-color 0.15s ease;
+}
+
+.product-card:hover::after,
+.product-card:focus-visible::after {
+  background: #5ac8fa;
+}
+
+.product-card__image {
+  width: 347px;
+  height: 347px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+  pointer-events: none;
+}
