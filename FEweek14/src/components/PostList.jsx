@@ -5,7 +5,7 @@ function PostList() {
 
     return (
         <ul>
-            {data.map((post) => (
+            {data?.map((post) => (
                 <li key={post.id}>{post.title}</li>
             ))}
         </ul>
