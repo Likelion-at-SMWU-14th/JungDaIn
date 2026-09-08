@@ -1,7 +1,14 @@
-import './App.css';
+import PostForm from "./components/PostForm";
+import PostList from "./components/PostList";
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <h1>Posts</h1>
+      <PostForm />
+      <PostList />
+    </div>
+  );
 }
 
 export default App;
