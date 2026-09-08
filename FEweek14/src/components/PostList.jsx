@@ -1,7 +1,9 @@
 import { usePosts } from "../hooks/usePosts";
 
 function PostList() {
-    const { data } = usePosts();
+    const { data, isPending } = usePosts();
+
+    if (isPending) return <p>로딩중...</p>;
 
     return (
         <ul>
