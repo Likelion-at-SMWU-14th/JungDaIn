@@ -7,5 +7,6 @@ export const useMyPage = (userId) => {
     queryFn: () => getMyPage(userId),
     staleTime: 30 * 1000,
     retry: 3,
+    gcTime: 10 * 60 * 1000,
   });
 };
