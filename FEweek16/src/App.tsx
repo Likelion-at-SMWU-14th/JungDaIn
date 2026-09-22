@@ -1,4 +1,4 @@
-import { useState, type SubmitEvent } from "react";
+import { useState, type SubmitEvent, type ChangeEvent } from "react";
 import TodoItem from "./components/TodoItem";
 import useTodoStore from "./store/store";
 import { filterTodos } from "./utils/filterTodos";
@@ -22,6 +22,10 @@ const FILTER_OPTIONS: {
   { value: "active", label: "진행 중" },
   { value: "completed", label: "완료" },
 ];
+
+const isTodoPriority = (value: unknown): value is TodoPriority => {
+  return value === "low" || value === "medium" || value === "high";
+};
 
 function App() {
   const [newTodo, setNewTodo] = useState("");
@@ -48,6 +52,14 @@ function App() {
     handleAddTodo();
   };
 
+  const handlePriorityChange = (e: ChangeEvent<HTMLSelectElement>): void => {
+    const value = e.target.value;
+
+    if (isTodoPriority(value)) {
+      setNewPriority(value);
+    }
+  };
+
   return (
     <>
       <S.GlobalStyle />
@@ -66,7 +78,7 @@ function App() {
 
               <S.PrioritySelect
                 value={newPriority}
-                onChange={(e) => setNewPriority(e.target.value)}
+                onChange={handlePriorityChange}
               >
                 {PRIORITY_OPTIONS.map((option) => (
                   <option key={option.value} value={option.value}>
