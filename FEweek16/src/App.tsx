@@ -2,15 +2,22 @@ import { useState, type SubmitEvent } from "react";
 import TodoItem from "./components/TodoItem";
 import useTodoStore from "./store/store";
 import { filterTodos } from "./utils/filterTodos";
+import type { TodoFilter, TodoPriority } from "./types/todo";
 import * as S from "./styles/styled";
 
-const PRIORITY_OPTIONS = [
+const PRIORITY_OPTIONS: {
+  value: TodoPriority;
+  label: string;
+}[] = [
   { value: "low", label: "낮음" },
   { value: "medium", label: "보통" },
   { value: "high", label: "높음" },
 ];
 
-const FILTER_OPTIONS = [
+const FILTER_OPTIONS: {
+  value: TodoFilter;
+  label: string;
+}[] = [
   { value: "all", label: "전체" },
   { value: "active", label: "진행 중" },
   { value: "completed", label: "완료" },
@@ -18,7 +25,7 @@ const FILTER_OPTIONS = [
 
 function App() {
   const [newTodo, setNewTodo] = useState("");
-  const [newPriority, setNewPriority] = useState("medium");
+  const [newPriority, setNewPriority] = useState<TodoPriority>("medium");
 
   const todos = useTodoStore((s) => s.todos);
   const addTodo = useTodoStore((s) => s.addTodo);
