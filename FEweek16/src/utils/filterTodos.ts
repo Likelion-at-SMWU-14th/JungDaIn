@@ -1,4 +1,6 @@
-export const filterTodos = (todos, filter) => {
+import type { Todo, TodoFilter } from "../types/todo";
+
+export const filterTodos = (todos: Todo[], filter: TodoFilter): Todo[] => {
   switch (filter) {
     case "all":
       return todos;
