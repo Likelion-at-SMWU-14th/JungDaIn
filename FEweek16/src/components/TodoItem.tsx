@@ -1,5 +1,10 @@
 import useTodoStore from "../store/store";
+import type { Todo } from "../types/todo";
 import * as S from "../styles/styled";
+
+interface TodoItemProps {
+  todo: Todo;
+}
 
 const PRIORITY_LABELS = {
   low: "낮음",
@@ -7,7 +12,7 @@ const PRIORITY_LABELS = {
   high: "높음",
 };
 
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo }: TodoItemProps) => {
   const removeTodo = useTodoStore((s) => s.removeTodo);
   const toggleTodo = useTodoStore((s) => s.toggleTodo);
 
