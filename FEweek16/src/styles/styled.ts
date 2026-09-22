@@ -1,5 +1,8 @@
 import styled, { createGlobalStyle } from "styled-components";
 
+// [TS 추가] PriorityBadge의 $priority prop 타입에 사용
+import type { TodoPriority } from "../types/todo";
+
 /* 전역 스타일 및 폰트 */
 export const GlobalStyle = createGlobalStyle`
   * { box-sizing: border-box; }
@@ -225,7 +228,13 @@ export const FilterGroup = styled.div`
   margin-bottom: 16px;
 `;
 
-export const FilterButton = styled(Button)`
+// [TS 추가] FilterButton이 받는 $active prop의 타입 정의
+interface FilterButtonProps {
+  $active: boolean;
+}
+
+// [TS 수정] FilterButtonProps를 styled-component에 적용
+export const FilterButton = styled(Button)<FilterButtonProps>`
   height: 36px;
   background: ${({ $active }) => ($active ? "#5b79ff" : "#eef1f7")};
   color: ${({ $active }) => ($active ? "#ffffff" : "#1d2a3b")};
@@ -238,7 +247,13 @@ export const ItemContent = styled.div`
   gap: 8px;
 `;
 
-export const PriorityBadge = styled.span`
+// [TS 추가] PriorityBadge가 받는 $priority prop의 타입 정의
+interface PriorityBadgeProps {
+  $priority: TodoPriority;
+}
+
+// [TS 수정] PriorityBadgeProps를 styled-component에 적용
+export const PriorityBadge = styled.span<PriorityBadgeProps>`
   flex-shrink: 0;
   padding: 3px 7px;
   border-radius: 999px;
