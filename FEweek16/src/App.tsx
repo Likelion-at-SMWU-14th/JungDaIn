@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type SubmitEvent } from "react";
 import TodoItem from "./components/TodoItem";
 import useTodoStore from "./store/store";
 import { filterTodos } from "./utils/filterTodos";
@@ -36,7 +36,7 @@ function App() {
     setNewPriority("medium");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: SubmitEvent<HTMLFormElement>): void => {
     e.preventDefault();
     handleAddTodo();
   };

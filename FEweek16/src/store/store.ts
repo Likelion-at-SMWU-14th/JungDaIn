@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
+import type { TodoStore } from "../types/todo";
 
 const useTodoStore = create(
   devtools(
     persist(
-      (set) => ({
+      (set): TodoStore => ({
         todos: [],
         filter: "all",
         addTodo: (rawTitle, priority = "medium") => {
