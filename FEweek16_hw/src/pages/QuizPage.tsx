@@ -1,12 +1,18 @@
 import { Link, useParams } from "react-router-dom";
+import type { ChangeEvent } from "react";
 import { useQuiz } from "../hooks/useQuiz";
+import type { Question, QuizId } from "../types/quiz";
+
+const isQuizId = (value: unknown): value is QuizId => {
+  return value === "1" || value === "2" || value === "3";
+};
 
 const QuizPage = () => {
   const { quizId } = useParams();
 
   // quizId에 따른 문제 세트 선택
-  const getQuestions = (id) => {
-    const questionSets = {
+  const getQuestions = (id: string | undefined): Question[] => {
+    const questionSets: Record<QuizId, Question[]> = {
       1: [
         { question: "React에서 상태를 관리하는 Hook은?", answer: "useState" },
         {
@@ -30,16 +36,10 @@ const QuizPage = () => {
       ],
     };
 
-    return (
-      questionSets[id] || [
-        { question: "React에서 상태를 관리하는 Hook은?", answer: "useState" },
-        {
-          question: "컴포넌트가 마운트될 때 실행되는 Hook은?",
-          answer: "useEffect",
-        },
-        { question: "DOM에 직접 접근할 때 사용하는 Hook은?", answer: "useRef" },
-      ]
-    );
+     if (isQuizId(id)) {
+      return questionSets[id];
+    }
+    return questionSets["1"];
   };
 
   const questions = getQuestions(quizId);
@@ -54,6 +54,10 @@ const QuizPage = () => {
     handleReset,
   } = useQuiz(questions);
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setUserAnswer(e.target.value);
+  };
+
   return (
     <div className="quiz-container">
       <h1>🦁 React Hooks Quiz Time</h1>
@@ -64,7 +68,7 @@ const QuizPage = () => {
           ref={inputRef}
           type="text"
           value={userAnswer}
-          onChange={(e) => setUserAnswer(e.target.value)}
+          onChange={handleChange}
           placeholder="답을 입력하세요"
           className="answer-input"
         />
