@@ -1,19 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import type { QuizId } from '../types/quiz';
+
 
 const ResultPage = () => {
     const navigate = useNavigate();
-
-    const handleGoHome = () => {
-        navigate("/");
-    }
-
-    const handleGoToQuiz = (id) => {
-        navigate(`/quiz/${id}`);
-    }
-
-    const handleGoBack = () => {
-        navigate(-1);
-    };
+    const handleGoHome = (): void => { navigate("/"); };
+    const handleGoToQuiz = (id: QuizId): void => { navigate(`/quiz/${id}`); };
+    const handleGoBack = (): void => { navigate(-1); };
 
     return (
         <div className='quiz-container'>
@@ -24,13 +17,13 @@ const ResultPage = () => {
                     <button onClick={handleGoHome} className="home-btn">
                         홈으로
                     </button>
-                    <button onClick={() => handleGoToQuiz(1)} className="link-btn">
+                    <button onClick={() => handleGoToQuiz("1")} className="link-btn">
                         퀴즈 1 풀기
                     </button>
-                    <button onClick={() => handleGoToQuiz(2)} className="link-btn">
+                    <button onClick={() => handleGoToQuiz("2")} className="link-btn">
                         퀴즈 2 풀기
                     </button>
-                    <button onClick={() => handleGoToQuiz(3)} className="link-btn">
+                    <button onClick={() => handleGoToQuiz("3")} className="link-btn">
                         퀴즈 3 풀기
                     </button>
                     <button onClick={handleGoBack} className="reset-btn">
