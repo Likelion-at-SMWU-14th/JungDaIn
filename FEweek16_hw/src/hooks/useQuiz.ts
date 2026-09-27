@@ -1,12 +1,23 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type RefObject } from "react";
+import type { Question } from "../types/quiz";
 
-export const useQuiz = (questions) => {
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [userAnswer, setUserAnswer] = useState("");
-    const [answers, setAnswers] = useState([]);
-    const inputRef = useRef(null);
+interface UseQuizResult {
+    currentQuestion: number;
+    userAnswer: string;
+    setUserAnswer: (value: string) => void;
+    answers: string[];
+    inputRef: RefObject<HTMLInputElement | null>;
+    handleSubmit: () => void;
+    handleReset: () => void;
+}
 
-    const handleSubmit = () => {
+export const useQuiz = (questions: Question[]): UseQuizResult => {
+    const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+    const [userAnswer, setUserAnswer] = useState<string>("");
+    const [answers, setAnswers] = useState<string[]>([]);
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const handleSubmit = (): void => {
         const newAnswers = [...answers];
         newAnswers[currentQuestion] = userAnswer;
         setAnswers(newAnswers);
@@ -18,12 +29,15 @@ export const useQuiz = (questions) => {
         }
     };
 
-    const handleReset = () => {
+    const handleReset = (): void => {
         setCurrentQuestion(0);
         setUserAnswer("");
         setAnswers([]);
-        inputRef.current.value = "";
-        inputRef.current.focus();
+
+        if (inputRef.current) {
+            inputRef.current.value = "";
+            inputRef.current.focus();
+        }
     };
 
     return {
