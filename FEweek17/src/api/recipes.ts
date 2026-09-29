@@ -26,3 +26,15 @@ export function getRecipes(): Promise<Recipe[]> {
 export function getRecipe(id: Recipe["id"]): Promise<Recipe> {
     return getResource<Recipe>(`/recipes/${id}`);
 }
+
+export function getErrorMessage(error: unknown): string {
+    if (axios.isAxiosError(error)) {
+        if (!error.response) {
+            return "서버에 연결할 수 없어요. JSON Server를 확인해 주세요.";
+        }
+        return "요청에 실패했어요. (" + error.response. status + ")";
+    }
+
+    if (error instanceof Error) return error.message;
+    return "알 수 없는 오류가 발생했어요.";
+}
