@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createRecipe, getRecipes } from "./api/recipes"
+import { createRecipe, deleteRecipe ,getRecipes } from "./api/recipes"
 import RecipeCard from "./components/RecipeCard";
 import RecipeForm from "./components/RecipeForm";
 import * as S from "./styles/styled";
@@ -9,6 +9,7 @@ export default function App() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [deletingId, setDeleteingId] = useState<string | null>(null);
 
   async function loadRecipes() {
     setLoading(true);
@@ -33,6 +34,21 @@ export default function App() {
     } finally {
       setSaving(false);
     }    
+  }
+
+  async function handelDelete(id: Recipe["id"]) {
+    setDeleteingId(id);
+    try {
+      await deleteRecipe(id);
+      setRecipes((curruntRecipes) =>
+        curruntRecipes.filter((recipe) => recipe.id !== id),
+    );
+    } catch (error: unknown) {
+      console.error(error)
+    } finally {
+      setDeleteingId(null);
+    }
+    
   }
 
   useEffect(() => {
@@ -67,7 +83,12 @@ export default function App() {
           ) : (
             <S.Cards>
               {recipes.map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
+                <RecipeCard 
+                  key={recipe.id}
+                  recipe={recipe} 
+                  disabled={deletingId === recipe.id}
+                  onDelete={(id) => void handelDelete(id)}
+                />
               ))}
           </S.Cards>
           )}

@@ -6,6 +6,10 @@ export async function  createRecipe(body: CreateRecipeRequest): Promise<Recipe> 
     return response.data;    
 }
 
+export async function  deleteRecipe(id: Recipe["id"]): Promise<void> {
+    await api.delete("/recipes/" + id);    
+}
+
 const api = axios.create({
     baseURL : "http://localhost:8000",
 });
