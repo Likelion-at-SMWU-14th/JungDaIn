@@ -1,5 +1,10 @@
 import axios from "axios";
-import type { Recipe } from "../types/recipe";
+import type { CreateRecipeRequest, Recipe } from "../types/recipe";
+
+export async function  createRecipe(body: CreateRecipeRequest): Promise<Recipe> {
+    const response = await api.post<Recipe>("/recipes", body);
+    return response.data;    
+}
 
 const api = axios.create({
     baseURL : "http://localhost:8000",
@@ -15,5 +20,5 @@ export function getRecipes(): Promise<Recipe[]> {
 }
 
 export function getRecipe(id: Recipe["id"]): Promise<Recipe> {
-    return getResource<Recipe>(`/recipes/$[id}`);
+    return getResource<Recipe>(`/recipes/${id}`);
 }

@@ -23,6 +23,19 @@
       "title": "버섯볶음 🍄",
       "ingredients": "버섯, 양파, 다진 마늘, 간장, 식용유",
       "instructions": "팬에 식용유를 두르고 마늘과 양파를 볶아요. 버섯을 넣어 익힌 뒤 간장으로 간해요."
+    },
+    {
+      "title": "참치 주먹밥",
+      "ingredients": "참치,밥",
+      "instructions": "",
+      "id": "G0hucv8CRNQ"
+    },
+    {
+      "title": "참치 주먹밥",
+      "ingredients": "참치, 밥",
+      "instructions": "밥에 참치를 넣어 동글게 만든다.",
+      "id": "fAXy4x2QRIk"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
