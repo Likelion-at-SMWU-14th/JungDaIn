@@ -1,15 +1,36 @@
+import { useEffect, useState } from "react";
+import { getRecipes } from "./api/recipes";
 import RecipeCard from "./components/RecipeCard";
 import RecipeForm from "./components/RecipeForm";
 import * as S from "./styles/styled";
+import type { Recipe } from "./types/recipe";
 
 export default function App() {
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  async function loadRecipes() {
+    setLoading(true);
+    try {
+      setRecipes(await getRecipes());
+    } catch (error: unknown) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    void loadRecipes();
+  }, []);
+
   return (
     <S.Page>
       <S.Layout>
         <S.ListPanel>
           <S.SectionHeading>
             <S.SectionTitle>오늘 만들 수 있는 요리</S.SectionTitle>
-            <S.RecipeCount>레시피 목록</S.RecipeCount>
+            <S.RecipeCount>{recipes.length}개의 레시피</S.RecipeCount>
           </S.SectionHeading>
 
           <S.PantryPanel onSubmit={(event) => event.preventDefault()}>
@@ -24,9 +45,18 @@ export default function App() {
             <S.PantryHint>재료는 쉼표로 구분해 입력해 주세요.</S.PantryHint>
           </S.PantryPanel>
 
-          <S.Cards>
-            <RecipeCard />
+          {loading ? (
+            <S.EmptyMessage>레시피를 불러오는 중이에요...</S.EmptyMessage>
+          ) : recipes.length === 0? (
+            <S.EmptyMessage>아직 등록된 레시피가 없어요.</S.EmptyMessage>
+          ) : (
+            <S.Cards>
+              {recipes.map((recipe) => (
+                <RecipeCard key={recipe.id} recipe={recipe} />
+              ))}
           </S.Cards>
+          )}
+          
         </S.ListPanel>
 
         <aside>
