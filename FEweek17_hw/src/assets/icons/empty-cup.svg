@@ -1,0 +1,37 @@
+<svg width="136" height="112" viewBox="0 0 136 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="136" height="112" fill="#F2F2F2"/>
+<g id="&#236;&#132;&#156;&#236;&#154;&#184; &#236;&#185;&#180;&#237;&#142;&#152; &#235;&#133;&#184;&#237;&#138;&#184; &#194;&#183; &#235;&#185;&#136; &#236;&#131;&#129;&#237;&#131;&#156;">
+<rect width="1440" height="1111" transform="translate(-456 -352)" fill="#FAF6F0"/>
+<g id="Empty content">
+<g id="Empty layout">
+<g id="Empty result panel" clip-path="url(#clip0_0_1)">
+<g id="CafeNote/EmptyState">
+<rect x="-399.5" y="-44.5" width="935" height="329" rx="19.5" fill="#FFF9F3"/>
+<rect x="-399.5" y="-44.5" width="935" height="329" rx="19.5" stroke="#E8DFD3"/>
+<g id="Coffee illustration">
+<circle id="Illustration backdrop" cx="68" cy="56" r="56" fill="#F1E6DB"/>
+<g id="Cup">
+<g clip-path="url(#clip1_0_1)">
+<path d="M31 35C31 30.5817 34.5817 27 39 27H97C101.418 27 105 30.5817 105 35V61C105 74.2548 94.2548 85 81 85H55C41.7452 85 31 74.2548 31 61V35Z" fill="white"/>
+<g id="circle-x">
+<path id="Vector" d="M73.2504 11.4998L62.7495 18.5004M62.7495 11.4998L73.2504 18.5004M85.5013 15.0001C85.5013 21.444 77.6657 26.6677 67.9999 26.6677C58.3342 26.6677 50.4985 21.444 50.4985 15.0001C50.4985 8.55628 58.3342 3.33252 67.9999 3.33252C77.6657 3.33252 85.5013 8.55628 85.5013 15.0001Z" stroke="#C8A98B" stroke-linecap="round"/>
+</g>
+</g>
+<path d="M39 28.5H97C100.59 28.5 103.5 31.4101 103.5 35V61C103.5 73.4264 93.4264 83.5 81 83.5H55C42.5736 83.5 32.5 73.4264 32.5 61V35C32.5 31.4101 35.4101 28.5 39 28.5Z" stroke="#6F4E37" stroke-width="3"/>
+</g>
+<path id="Cup handle" d="M104 46.5C110.808 46.5 116.5 52.445 116.5 60C116.5 67.555 110.808 73.5 104 73.5C97.1922 73.5 91.5 67.555 91.5 60C91.5 52.445 97.1922 46.5 104 46.5Z" stroke="#6F4E37" stroke-width="3"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_1">
+<rect width="936" height="330" fill="white" transform="translate(-400 -45)"/>
+</clipPath>
+<clipPath id="clip1_0_1">
+<path d="M31 35C31 30.5817 34.5817 27 39 27H97C101.418 27 105 30.5817 105 35V61C105 74.2548 94.2548 85 81 85H55C41.7452 85 31 74.2548 31 61V35Z" fill="white"/>
+</clipPath>
+</defs>
+</svg>
