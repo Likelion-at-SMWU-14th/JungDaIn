@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue'
+import BookInput from './components/BookInput.vue'
+import BookItem from './components/BookItem.vue'
 
 const books = ref([
   { id: 1, title: '데미안', done: true },
@@ -7,12 +9,13 @@ const books = ref([
   { id: 3, title: '아몬드', done: false },
 ])
 
-const newTitle = ref('')
+function addBook(title) {
+  books.value.push({ id: Date.now(), title, done: false })
+}
 
-function addBook() {
-  if (!newTitle.value.trim()) return
-  books.value.push({ id: Date.now(), title: newTitle.value, done: false })
-  newTitle.value = ''
+function toggleBook(id) {
+  const book = books.value.find((book) => book.id === id)
+  book.done = !book.done
 }
 
 function removeBook(id) {
@@ -22,21 +25,16 @@ function removeBook(id) {
 
 <template>
   <h1>나의 독서 기록</h1>
-  <input v-model="newTitle" @keyup.enter="addBook" placeholder="책 제목을 입력하세요" />
-  <button @click="addBook">추가</button>
+
+  <BookInput @add="addBook" />
 
   <ul>
-    <li v-for="book in books" :key="book.id">
-      <input type="checkbox" v-model="book.done" />
-      <span :class="{ done: book.done }">{{ book.title }}</span>
-      <button @click="removeBook(book.id)">삭제</button>
-    </li>
+    <BookItem
+      v-for="book in books"
+      :key="book.id"
+      :book="book"
+      @toggle="toggleBook"
+      @remove="removeBook"
+    />
   </ul>
 </template>
-
-<style scoped>
-.done {
-  text-decoration: line-through;
-  color: #999;
-}
-</style>
