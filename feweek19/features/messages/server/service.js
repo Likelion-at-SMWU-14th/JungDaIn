@@ -1,6 +1,6 @@
 import { messages } from "./data";
 
-export function getMessgaes() {
+export function getMessages() {
     return messages;
 }
 

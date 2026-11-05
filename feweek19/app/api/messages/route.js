@@ -1,7 +1,7 @@
-import { addMessage, getMessgaes } from "@/features/messages/server/service";
+import { addMessage, getMessages } from "@/features/messages/server/service";
 
 export function GET() {
-    return Response.json(getMessgaes());
+    return Response.json(getMessages());
 }
 
 export async function POST(request) {

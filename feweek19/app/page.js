@@ -2,8 +2,12 @@ import { headers } from "next/headers";
 import MessageForm from "@/features/messages/components/MessageForm";
 
 export default async function Home() {
-
-	// 실습 때 채워봅시다 ~
+  const requestHeaders = await headers();
+  const host = requestHeaders.get("host");
+  const response = await fetch(`http://${host}/api/messages`, {
+    cache: "no-store",
+  });
+  const messages = await response.json();
 
   return (
     <main className="container">
