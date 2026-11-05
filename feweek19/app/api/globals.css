@@ -1,0 +1,23 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #fffaf4; color: #27211e; font-family: Arial, sans-serif; }
+.container { max-width: 1040px; margin: 0 auto; padding: 72px 24px; }
+.hero { margin-bottom: 40px; }
+.badge { color: #d55a16; font-size: 13px; font-weight: 700; letter-spacing: .08em; }
+h1 { margin: 12px 0; font-size: clamp(32px, 5vw, 48px); }
+.hero p { color: #746a62; line-height: 1.6; }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 24px; align-items: start; }
+.message-form, .messages { padding: 28px; border: 1px solid #f0e5d9; border-radius: 18px; background: white; }
+h2 { margin: 0; font-size: 21px; }
+.message-form { display: flex; flex-direction: column; gap: 10px; }
+.message-form h2 { margin-bottom: 12px; }
+label { margin-top: 4px; font-weight: 700; font-size: 14px; }
+input, textarea { width: 100%; border: 1px solid #e5ded7; border-radius: 9px; padding: 12px; font: inherit; }
+textarea { resize: vertical; }
+input:focus, textarea:focus { outline: 2px solid #f8ae78; outline-offset: 1px; }
+button { margin-top: 8px; border: 0; border-radius: 9px; padding: 13px; background: #ee7027; color: white; font: inherit; font-weight: 700; cursor: pointer; }
+.section-heading { display: flex; justify-content: space-between; align-items: center; }
+.section-heading span { color: #d55a16; font-size: 14px; font-weight: 700; }
+.message-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 12px; }
+.message-card { padding: 18px; border-radius: 12px; background: #fff8f0; overflow-wrap: anywhere; }
+.message-card p { margin: 8px 0 0; color: #635951; line-height: 1.6; white-space: pre-wrap; }
+@media (max-width: 700px) { .container { padding: 48px 18px; } .layout { grid-template-columns: 1fr; } }
