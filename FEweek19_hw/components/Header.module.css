@@ -1,0 +1,13 @@
+.header {
+  padding: 16px 20px;
+  background: #3b5d50;
+}
+
+.logo {
+  display: block;
+  max-width: 640px;
+  margin: 0 auto;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+}
