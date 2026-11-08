@@ -1,0 +1,13 @@
+.summary {
+  margin-bottom: 24px;
+}
+
+.summary h1 {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+
+.summary p {
+  color: #3b5d50;
+  font-weight: 600;
+}
